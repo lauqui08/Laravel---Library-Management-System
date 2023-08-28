@@ -53,7 +53,7 @@
                         Members
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Lists</a></li>
+                        <li><a class="dropdown-item" href="{{ route('members.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('members.create') }}">Add</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>

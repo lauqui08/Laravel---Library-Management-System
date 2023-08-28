@@ -5,7 +5,7 @@
     <div class="container shadow p-3">
         <table class="table table-hover table-sm table-bordered">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>ISBN</th>
                     <th>Title</th>
                     <th>Category</th>
