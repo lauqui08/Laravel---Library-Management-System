@@ -1,12 +1,17 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
 
-{{ $all_authors }}
-
     <div class="container shadow p-3">
-        <form action="{{ route('books.store') }}" method="POST" class="form-control  shadow">
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        <form action="{{ route('books.update',$book->id) }}" method="POST" class="form-control  shadow">
             @csrf
+            @method('PUT')
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
@@ -31,11 +36,12 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="category" name="category">
-                        <option selected>Open this select menu</option>
-                     
+                    <select class="form-select" id="category_id" name="category_id">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" @if($category->id == $book->category) {{ 'selected' }} @endif>{{ $category->category_name }}</option>
+                        @endforeach
                     </select>
-                    <label for="category">CATEGORY</label>
+                    <label for="category_id">CATEGORY</label>
                 </div>
             </div>
             <div class="col-md-4">
@@ -116,31 +122,33 @@
     <!-- Modal Add Author -->
         <div class="modal fade" id="{{ $book->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
+        <form action="{{ route('books.author.store') }}" method="POST" class="for-control">
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            @csrf
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Select Author below you want to add.</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" class="for-control">
 
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="author" name="author">
+                        <select class="form-select" id="author_id" name="author_id">
                             <option selected>Open this select menu</option>
                             @foreach($all_authors as $single_author)
-                            <option value="$single_author->id">{{ @$single_author->first_name }} {{ @$single_author->last_name }}</option>
+                            <option value="{{ $single_author->id }}">{{ @$single_author->first_name }} {{ @$single_author->last_name }}</option>
                             @endforeach
                         </select>
-                        <label for="author">AUTHORS</label>
+                        <label for="author_id">AUTHORS</label>
                     </div>
                     
-                </form> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
             </div>
+            </form> 
         </div>
         </div>
 

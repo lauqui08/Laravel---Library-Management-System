@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container shadow">
+    <div class="container shadow p-3">
         <table class="table table-hover table-sm table-bordered">
             <thead>
                 <tr>
@@ -22,7 +22,7 @@
                 @endforeach
             </thead>
         </table>
-
+    {{ $books->onEachSide(5)->links("pagination::bootstrap-5") }}
     </div>
 
 @endsection

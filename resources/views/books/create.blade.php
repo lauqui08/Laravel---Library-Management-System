@@ -1,7 +1,7 @@
 @extends('layouts.app');
 
 @section('content')
-    <div class="container shadow">
+    <div class="container shadow p-3">
         <form action="{{ route('books.store') }}" method="POST" class="form-control  shadow">
             @csrf
         <div class="row">
@@ -28,11 +28,13 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="category" name="category">
+                    <select class="form-select" id="category_id" name="category_id" required>
                         <option selected>Open this select menu</option>
-                     
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                        @endforeach
                     </select>
-                    <label for="category">CATEGORY</label>
+                    <label for="category_id">CATEGORY</label>
                 </div>
             </div>
             <div class="col-md-4">

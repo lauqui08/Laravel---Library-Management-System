@@ -28,6 +28,22 @@ class BookAuthorController extends Controller
         // dd($book_author);
     }
 
+    public function store(Request $request)
+    {
+        // dd($request->author_id);
+        BookAuthor::create([
+            'book_id'=>$request->book_id,
+            'author_id'=>$request->author_id,
+        ]);
+
+        if(isset($request->new_book)){
+            return redirect(route('books.show',$request->book_id))->with('author-message','Successfully added author.');
+        }else{
+            return redirect(route('books.edit',$request->book_id))->with('author-message','Successfully added author.');
+        }
+
+    }
+
     public function destroy(Request $request)
     {
         // dd($request->book_id);
