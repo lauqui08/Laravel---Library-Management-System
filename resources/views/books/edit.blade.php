@@ -58,7 +58,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input type="number" min="1" max="9999999999" class="form-control" id="copies_owned" name="copies_owned" value="{{ $book->copies_owned }}" placeholder="" required>
+                    <input type="number" min="0" class="form-control" id="copies_owned" name="copies_owned" value="{{ $book->copies_owned }}" placeholder="" required>
                     <label for="contact">COPIES OWNED</label>
                 </div>
             </div>

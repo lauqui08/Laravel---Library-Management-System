@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container shadow p-3">
-        <table class="table table-hover table-bordered">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Members</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Lists</li>
+    </ol>
+        <table class="table table-hover">
             <thead>
                 <tr class="table-dark">
                     <th>Full Name</th>
@@ -22,6 +26,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $members->links('pagination::bootstrap-5')}}
+        {{ $members->onEachSide(2)->links('pagination::bootstrap-5')}}
     </div>
 @endsection

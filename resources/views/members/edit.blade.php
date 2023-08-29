@@ -3,6 +3,10 @@
 @section('content')
 
     <div class="container shadow p-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Members</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
         <form action="{{ route('members.update',$member->id) }}" method="POST" class="form-control">
             @csrf
             @method('PUT')
@@ -74,6 +78,7 @@
         </div>
 
         <div class="text-end">
+            <a href="{{ route('members.show',$member->id) }}" class="btn btn-outline-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
            

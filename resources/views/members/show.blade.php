@@ -3,6 +3,10 @@
 @section('content')
 
     <div class="container shadow p-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Members</a></li>
+        <li class="breadcrumb-item active" aria-current="page">View</li>
+    </ol>
 
         @if(session('message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">

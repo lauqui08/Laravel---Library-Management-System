@@ -16,11 +16,14 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::paginate('15');
+        $books = Book::join('category','book.category_id','=','category.id')
+        ->select('book.*','category.*')->paginate('15');
         // dd($books);
 
         return view('books.index',['books'=>$books]);
     }
+
+
 
     public function create()
     {
