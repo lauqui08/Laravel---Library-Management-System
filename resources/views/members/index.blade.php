@@ -13,11 +13,11 @@
             </thead>
             <tbody>
                 @foreach($members as $member)
-                <tr>
+                <tr class="@if($member->active_status_id == '2'){{ 'table-warning' }}@endif">
                     <td>{{ $member->first_name }} {{ $member->last_name }}</td>
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->contact }}</td>
-                    <td><a href="{{ $member->id }}">View</a></td>
+                    <td><a href="{{ route('members.show',$member->id) }}">View</a></td>
                 </tr>
                 @endforeach
             </tbody>

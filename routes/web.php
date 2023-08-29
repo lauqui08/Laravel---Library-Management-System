@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookAuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,4 +46,19 @@ Route::delete('/authors',[BookAuthorController::class,'destroy'])->name('books.a
 //members
 Route::get('/members',[MemberController::class,'index'])->name('members.index');
 Route::get('/members/create',[MemberController::class,'create'])->name('members.create');
-Route::post('/members/',[MemberController::class,'store'])->name('members.store');
+Route::post('/members',[MemberController::class,'store'])->name('members.store');
+Route::get('/members/{id}',[MemberController::class,'show'])->name('members.show');
+Route::get('/members/{id}/edit',[MemberController::class,'edit'])->name('members.edit');
+Route::put('/members/{id}',[MemberController::class,'update'])->name('members.update');
+
+//Transactions
+Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
+Route::get('/transactions/create',[TransactionController::class,'create'])->name('transactions.create');
+Route::post('/transactions',[TransactionController::class,'store'])->name('transactions.store');
+Route::get('/transactions/{id}',[TransactionController::class,'show'])->name('transactions.show');
+Route::get('/transactions/{id}/edit',[TransactionController::class,'edit'])->name('transactions.edit');
+Route::put('/transactions/{id}',[TransactionController::class,'update'])->name('transactions.update');
+
+//Trasaction borrow
+Route::get('transactions/borrow/create',[BorrowController::class,'create'])->name('transactions.borrow.create');
+

@@ -85,8 +85,8 @@
         </div>
 
         <div class="text-end">
-            <a href="{{ route('books.show',$book->id) }}" class="btn btn-outline-secondary btn-lg">Cancel</a>
-            <button type="submit" class="btn btn-primary btn-lg">Update</button>
+            <a href="{{ route('books.show',$book->id) }}" class="btn btn-outline-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
            
         </form>

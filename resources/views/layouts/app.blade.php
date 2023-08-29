@@ -57,7 +57,21 @@
                         <li><a class="dropdown-item" href="{{ route('members.create') }}">Add</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        <li><a class="dropdown-item" href="#">Return</a></li>
+                    </ul>
+                    </div>
+
+                    <!-- Transactions menu -->
+                    <div class="dropdown">
+                    <button class="link link-secondary dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                        Transactions
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#">Lists</a></li>
+                        <li><a class="dropdown-item" href="{{ route('transactions.create') }}">Borrow Book</a></li>
+                        <li><a class="dropdown-item" href="#">Reserve Book</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Return Book</a></li>
                     </ul>
                     </div>
 
