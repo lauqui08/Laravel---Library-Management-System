@@ -5,7 +5,7 @@
         {{ $member->id }}
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 shadow">
                 <table class="table table-hover table-sm table-bordered">
                     <thead>
                         <tr class="table-dark">
@@ -25,11 +25,17 @@
                         @endforeach
                     </thead>
                 </table>
+                {{ $books->onEachSide(1)->links("pagination::bootstrap-4") }}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 shadow">
                 {{ $borrowed_books }}
+                @foreach($borrowed_books as $borrowed_book)
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{ $borrowed_book->title }}</strong> {{ $borrowed_book->book_description }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endforeach
             </div>
-            {{ $books->onEachSide(5)->links("pagination::bootstrap-5") }}
         </div>
     </div>
 

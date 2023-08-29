@@ -3,6 +3,14 @@
 @section('content')
 
     <div class="container shadow p-3">
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Lists</li>
+    </ol>
+    </nav>
+
         <table class="table table-hover table-sm table-bordered">
             <thead>
                 <tr class="table-dark">
@@ -17,7 +25,7 @@
                     <td>{{ $book->isbn }}</td>
                     <td>{{ $book->title }}</td>
                     <td></td>
-                    <td><a href="{{ route('books.show',$book->id) }}">View</a></td>
+                    <td class="text-center"><a class="btn btn-outline-primary btn-sm" href="{{ route('books.show',$book->id) }}">View</a></td>
                 </tr>
                 @endforeach
             </thead>

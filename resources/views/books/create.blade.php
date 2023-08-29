@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="container shadow p-3">
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add</li>
+    </ol>
+    </nav>
+
+
         <form action="{{ route('books.store') }}" method="POST" class="form-control  shadow">
             @csrf
         <div class="row">

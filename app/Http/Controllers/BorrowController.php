@@ -24,9 +24,12 @@ class BorrowController extends Controller
 
     public function show($id)
     {
-        $books = Book::paginate('15');
+        $books = Book::paginate('10');
         $member = Member::findOrfail($id);
-        $borrowed_books = Borrow::where(['member_id'=>$member->id, 'returned_date'=>null])->get();
+        $borrowed_books = Borrow::where(['member_id'=>$member->id, 'returned_date'=>null])
+        ->join('book','loan.book_id','=','book.id')
+        ->select('book.*')
+        ->get();
         // dd($borrowed_books);
 
         return view('transactions.borrow.show',['books'=>$books,'member'=>$member,'borrowed_books'=>$borrowed_books]);

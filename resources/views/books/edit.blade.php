@@ -3,6 +3,12 @@
 @section('content')
 
     <div class="container shadow p-3">
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+    </nav>
         @if(session('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('message') }}
