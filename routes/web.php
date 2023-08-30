@@ -60,7 +60,9 @@ Route::get('/transactions/{id}/edit',[TransactionController::class,'edit'])->nam
 Route::put('/transactions/{id}',[TransactionController::class,'update'])->name('transactions.update');
 
 //Trasaction borrow
+Route::get('/borrow',[BorrowController::class,'index'])->name('borrow.index');
 Route::get('/borrow/create',[BorrowController::class,'create'])->name('borrow.create');
 Route::get('/borrow/{id}',[BorrowController::class,'show'])->name('borrow.show');
 Route::post('/borrow',[BorrowController::class,'store'])->name('borrow.store');
+Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
 

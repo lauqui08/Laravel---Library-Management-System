@@ -80,14 +80,15 @@ class BookController extends Controller
 
     public function edit($id)
     {
-        $book = Book::findOrfail($id);
+        $book = Book::join('category','book.category_id','=','category.id')
+        ->where('book.id',$id)
+        ->select('book.*','category.category_name')->get();
+
         $all_authors = Author::all();
         $categories = Category::all();
         // dd($book->id);
-        $book_author = BookAuthor::where('book_id',$book->id)->get();
-        // dd($book_author[0]->book_id);
-        // dd(route('books.show',$id));
-            // $authors = Author::all()->where('id',$book_author[0]->book_id);
+        // $book_author = BookAuthor::where('book_id',$book->id)->get();
+     
 
             $authors = DB::table('author')
             ->join('book_author','author.id','=','book_author.author_id')
@@ -96,7 +97,7 @@ class BookController extends Controller
             ->select('author.*')
             ->get();
             // dd($authors);
-            return view('books.edit',['book'=>$book,'authors'=>$authors,'all_authors'=>$all_authors,'categories'=>$categories]);
+            return view('books.edit',['book'=>$book[0],'authors'=>$authors,'all_authors'=>$all_authors,'categories'=>$categories]);
         
     }
 

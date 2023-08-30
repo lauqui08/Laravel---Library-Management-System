@@ -4,9 +4,18 @@
     <div class="container shadow p-3">
         {{ $member->id }}
 
+        <div class="my-1 text-end">
+            <button type="button" class="btn btn-primary position-relative">
+            CHECK OUT BOOKS
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ count($borrowed_books) ? count($borrowed_books) : 0 }}
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+        </div>
         <div class="row">
             <div class="col-md-6 shadow">
-                <table class="table table-hover table-sm table-bordered">
+                <table class="table table-hover">
                     <thead>
                         <tr class="table-dark">
                             <th>ISBN</th>
@@ -14,27 +23,40 @@
                             <th>Category</th>
                             <th>Menu</th>
                         </tr>
-
+                    </thead>
+                    <tbody>
                         @foreach($books as $book)
-                        <tr>
+                        <tr class="lh-1">
                             <td>{{ $book->isbn }}</td>
                             <td>{{ $book->title }}</td>
-                            <td></td>
+                            <td>{{ $book->category_name }}</td>
                             <td><a data-id="{{ $book->id }}" data-title="{{ $book->title }}" class="getBookId btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add</a></td>
                         </tr>
                         @endforeach
-                    </thead>
+                    </tbody>
                 </table>
                 {{ $books->onEachSide(1)->links("pagination::bootstrap-4") }}
             </div>
-            <div class="col-md-6 shadow">
-                {{ $borrowed_books }}
-                @foreach($borrowed_books as $borrowed_book)
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{{ $borrowed_book->title }}</strong> {{ $borrowed_book->book_description }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endforeach
+            <div class="col-md-6 shadow overflow-auto">
+                <h2>LISTS</h2>
+                <table class="table table-hover">
+                    <tbody>
+                        @foreach($borrowed_books as $borrowed_book)
+                            <tr class="lh-1">
+                                <td class="fw-bold">{{ $borrowed_book->title }}</td>
+                                <td>{{ $borrowed_book->category_name }}</td>
+                                <td>
+                                    <form action="{{ route('borrow.destroy',$borrowed_book->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="member_id" value="{{ $member->id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

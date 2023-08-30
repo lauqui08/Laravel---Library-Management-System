@@ -22,19 +22,19 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input min="1" type="number" class="form-control" name="book_id" id="book_id" value="{{ $book->id }}" placeholder="" disabled>
+                    <input min="1" type="number" class="form-control fw-bolder text-info" name="book_id" id="book_id" value="{{ $book->id }}" placeholder="" disabled>
                     <label for="book_id">BOOK NUMBER</label>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input title="INTERNATIONAL STANDARD BOOK NUMBER" type="text" class="form-control" id="isbn" value="{{ $book->isbn }}" name="isbn" placeholder="" disabled>
+                    <input title="INTERNATIONAL STANDARD BOOK NUMBER" type="text" class="form-control fw-bolder text-info" id="isbn" value="{{ $book->isbn }}" name="isbn" placeholder="" disabled>
                     <label for="isbn">ISBN</label>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $book->title }}" placeholder="" disabled>
+                    <input type="text" class="form-control fw-bolder text-info" id="title" name="title" value="{{ $book->title }}" placeholder="" disabled>
                     <label for="title">TITLE</label>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="category_id" name="category_id" disabled>
+                    <select class="form-select fw-bolder text-info" id="category_id" name="category_id" disabled>
                             <option selected>{{ $category->category_name }}</option>
                     </select>
                     <label for="category_id">CATEGORY</label>
@@ -51,13 +51,13 @@
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" name="publication_date" id="publication_date" value="{{ $book->publication_date }}" placeholder="" disabled>
+                    <input type="date" class="form-control fw-bolder text-info" name="publication_date" id="publication_date" value="{{ $book->publication_date }}" placeholder="" disabled>
                     <label for="publication_date">PUBLICATION DATE</label>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input type="number" min="1" max="9999999999" class="form-control" id="copies_owned" name="copies_owned" value="{{ $book->copies_owned }}" placeholder="" disabled>
+                    <input type="number" min="1" max="9999999999" class="form-control fw-bolder text-info" id="copies_owned" name="copies_owned" value="{{ $book->copies_owned }}" placeholder="" disabled>
                     <label for="contact">COPIES OWNED</label>
                 </div>
             </div>
@@ -93,7 +93,7 @@
         <div class="row mt-3">
             <div class="col">
                 <div class="form-floating mb-3">
-                    <textarea class="form-control" placeholder="" name="description" id="description" style="height: 100px" disabled>{{ $book->book_description }}</textarea>
+                    <textarea class="form-control fw-bolder text-info" placeholder="" name="description" id="description" style="height: 100px" disabled>{{ $book->book_description }}</textarea>
                     <label for="description">DESCRIPTION</label>
                 </div>
             </div>

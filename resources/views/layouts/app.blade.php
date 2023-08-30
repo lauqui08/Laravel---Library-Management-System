@@ -43,7 +43,10 @@
                         <li><a class="dropdown-item" href="{{ route('books.create') }}">Add</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Add Author</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Add Category</a></li>
                     </ul>
                     </div>
 

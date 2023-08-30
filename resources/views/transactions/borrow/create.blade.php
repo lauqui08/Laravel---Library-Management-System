@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container shadow p-3">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('borrow.index') }}">Borrow</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add</li>
+    </ol>
             <form action="" class="form-control" method="GET">
             @csrf
             <div class="row">

@@ -12,7 +12,7 @@
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Contact</th>
-                    <th>Menu</th>
+                    <th class="text-center">Menu</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,11 @@
                     <td>{{ $member->first_name }} {{ $member->last_name }}</td>
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->contact }}</td>
-                    <td><a href="{{ route('members.show',$member->id) }}">View</a></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('borrow.show',$member->id) }}">Borrow</a>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('members.show',$member->id) }}">Reserve</a>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('members.show',$member->id) }}">View</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
