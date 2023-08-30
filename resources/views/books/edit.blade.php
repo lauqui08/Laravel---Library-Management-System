@@ -21,13 +21,13 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input min="1" type="number" class="form-control fw-bolder text-info" name="book_id" id="book_id" value="{{ $book->id }}" placeholder="" required>
+                    <input min="1" type="number" class="form-control fw-bolder text-info" name="book_id" id="book_id" value="{{ $book->id }}" placeholder="" disabled>
                     <label for="book_id">BOOK NUMBER</label>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input title="INTERNATIONAL STANDARD BOOK NUMBER" type="text" class="form-control fw-bolder text-info" id="isbn" value="{{ $book->isbn }}" name="isbn" placeholder="" required>
+                    <input title="INTERNATIONAL STANDARD BOOK NUMBER" type="text" class="form-control fw-bolder text-info"  value="{{ $book->isbn }}"  placeholder="" disabled>
                     <label for="isbn">ISBN</label>
                 </div>
             </div>

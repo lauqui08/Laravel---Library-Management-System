@@ -3,16 +3,21 @@
 @section('content')
 
     <div class="container shadow p-3">
+
+    <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Members</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add</li>
     </ol>
+    </nav>
+
         @if(session('message') && !$errors->any())
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('message') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        
         <form action="{{ route('members.store') }}" method="POST" class="form-control">
             @csrf
         <div class="row">

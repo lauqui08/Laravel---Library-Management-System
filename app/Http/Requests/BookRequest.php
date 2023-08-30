@@ -23,6 +23,9 @@ class BookRequest extends FormRequest
     {
         return [
             //
+            'id'=>'unique:book',
+            'isbn'=>'required|unique:book',
+            'publication_date'=>'required',
         ];
     }
 }

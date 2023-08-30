@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-floating mb-3">
-                    <input type="number" min="1" class="form-control fw-bolder text-info" id="id" name="id" value="{{ $member->id }}" placeholder="" required>
+                    <input type="number" min="1" class="form-control fw-bolder text-info" value="{{ $member->id }}" placeholder="" disabled>
                     <label for="id">MEMBER ID</label>
                 </div>
             </div>

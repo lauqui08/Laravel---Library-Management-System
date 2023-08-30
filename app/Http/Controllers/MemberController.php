@@ -59,7 +59,6 @@ class MemberController extends Controller
     {
         $check_id = is_null($request->active_status_id) ? 2 : 1;
         Member::where('id',$id)->update([
-                'id'=>$request->id,
                 'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'gender'=>$request->gender,

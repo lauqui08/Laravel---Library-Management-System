@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\BookAuthor;
@@ -17,7 +18,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::join('category','book.category_id','=','category.id')
-        ->select('book.*','category.*')->paginate('15');
+        ->select('book.*','category.category_name')->paginate('15');
         // dd($books);
 
         return view('books.index',['books'=>$books]);
@@ -32,7 +33,7 @@ class BookController extends Controller
         return view('books.create',['categories'=>$categories]);
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         $book = Book::create([
             'id'=>$request->book_id,
@@ -45,7 +46,7 @@ class BookController extends Controller
         ]);
 
 
-        return redirect(route('books.show',$request->book_id));
+        return redirect(route('books.show',$request->book_id))->with('message','Successfully saved new book');
     }
 
     public function show($id)
@@ -103,9 +104,8 @@ class BookController extends Controller
 
     public function update(Request $request,$id)
     {
+
         Book::where('id',$id)->update([
-            'id'=>$request->book_id,
-            'isbn'=>$request->isbn,
             'title'=>$request->title,
             'category_id'=>$request->category_id,
             'publication_date'=>$request->publication_date,
@@ -113,14 +113,15 @@ class BookController extends Controller
             'copies_owned'=>$request->copies_owned
         ]);
 
-        $book = Book::findOrfail($id);
-        $all_authors = Author::all();
-        $categories = Category::all();
-        // dd($book->id);
-        $book_author = BookAuthor::where('book_id',$book->id)->get();
-        // dd($book_author[0]->book_id);
-        // dd(route('books.show',$id));
-            // $authors = Author::all()->where('id',$book_author[0]->book_id);
+            $book = Book::findOrfail($id);
+            $all_authors = Author::all();
+            $categories = Category::all();
+
+            // dd($book->id);
+            $book_author = BookAuthor::where('book_id',$book->id)->get();
+            // dd($book_author[0]->book_id);
+            // dd(route('books.show',$id));
+                // $authors = Author::all()->where('id',$book_author[0]->book_id);
 
             $authors = DB::table('author')
             ->join('book_author','author.id','=','book_author.author_id')
