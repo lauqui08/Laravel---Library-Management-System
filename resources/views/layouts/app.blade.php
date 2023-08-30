@@ -72,7 +72,6 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="#">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('borrow.create') }}">Borrow Book</a></li>
-                        <li><a class="dropdown-item" href="#">Reserve Book</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Return Book</a></li>
                     </ul>

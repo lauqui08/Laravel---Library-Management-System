@@ -42,6 +42,7 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr class="table-dark">
+                        <th>ID Number</th>
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Contact</th>
@@ -50,7 +51,8 @@
                 </thead>
                 <tbody>
                     @foreach($members as $member)
-                    <tr class="@if($member->active_status_id == '2'){{ 'table-warning' }}@endif">
+                    <tr class="@if($member->active_status_id == '2'){{ 'table-warning' }}@endif lh-1">
+                        <td>{{ $member->id }}</td>
                         <td>{{ $member->first_name }} {{ $member->last_name }}</td>
                         <td>{{ $member->email }}</td>
                         <td>{{ $member->contact }}</td>

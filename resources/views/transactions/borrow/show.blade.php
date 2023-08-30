@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container shadow p-3">
-        {{ $member->id }}
+        {{ $member->first_name }} {{ $member->last_name }}
 
         <div class="my-1 text-end">
-            <a href="{{ route('borrow.edit',$member->id) }}" class="btn btn-primary position-relative">
+            <a href="{{ count($borrowed_books) ? route('borrow.edit',$member->id) : '#' }}" class="btn btn-primary position-relative" disabled>
             CHECK OUT BOOKS
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ count($borrowed_books) ? count($borrowed_books) : 0 }}
@@ -68,7 +68,7 @@
                 <input type="hidden" class="bookID" name="book_id">
                 <input type="hidden" class="memberID" name="member_id" value="{{$member->id}}">
                 <input type="hidden" name="loan_id" value="{{rand(1,2147483647)}}">
-                <input type="hidden" name="loan_date" value="{{ date('Y/m/d') }}">
+                <!-- <input type="hidden" name="loan_date" value="{{ date('Y/m/d') }}"> -->
 
                 <div class="modal-dialog">
                     <div class="modal-content">

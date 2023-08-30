@@ -64,6 +64,8 @@ Route::get('/borrow',[BorrowController::class,'index'])->name('borrow.index');
 Route::get('/borrow/create',[BorrowController::class,'create'])->name('borrow.create');
 Route::post('/borrow',[BorrowController::class,'store'])->name('borrow.store');
 Route::get('/borrow/{id}',[BorrowController::class,'show'])->name('borrow.show');
-Route::get('/borrow/{id}/edit',[BorrowController::class,'edit'])->name('borrow.edit');
+Route::get('/borrow/{id}/checkout-confirmation',[BorrowController::class,'edit'])->name('borrow.edit');
+
+Route::put('/borow/{id}',[BorrowController::class,'update'])->name('borrow.update');
 Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
 

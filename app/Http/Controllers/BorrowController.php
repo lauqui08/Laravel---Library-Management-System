@@ -28,7 +28,7 @@ class BorrowController extends Controller
     {
         $books = Book::join('category','book.category_id','=','category.id')->select('book.*','category.category_name')->paginate('10');
         $member = Member::findOrfail($id);
-        $borrowed_books = Borrow::where(['member_id'=>$member->id, 'returned_date'=>null])
+        $borrowed_books = Borrow::where(['member_id'=>$member->id, 'loan_date'=>null])
         ->join('book','loan.book_id','=','book.id')
         ->join('category','book.category_id','=','category.id')
         ->select('loan.id','book.title','category.category_name')
@@ -53,20 +53,41 @@ class BorrowController extends Controller
         return redirect(route('borrow.show',$request->member_id));
     }
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request,$id='')
     {
+        
+        if(isset($_POST['cancel-transaction'])){
+            Borrow::where(['member_id'=>$request->member_id,'loan_date'=>null])
+            ->delete();
+
+            return 'transaction deleted';
+        }else{
         Borrow::find($id)->delete();
         // dd($bb);
         return redirect(route('borrow.show',$request->member_id));
+
+        }
     }
 
     public function edit($id)
     {
         $transactions = Borrow::join('book','loan.book_id','=','book.id')
         ->join('member','loan.member_id','=','member.id')
-        ->where(['member.id'=>$id,'returned_date'=>null])
+        ->where(['member.id'=>$id,'loan_date'=>null])
         ->get();
 
-        return view('transactions.borrow.edit',['transactions'=>$transactions]);
+        $member = Member::find($id);
+
+        return view('transactions.borrow.edit',['transactions'=>$transactions,'member'=>$member]);
+    }
+
+    public function update($id)
+    {
+        Borrow::where('member_id',$id)
+        ->update([
+            'loan_date'=>date('Y/m/d'),
+        ]);
+
+        return "Wag mahihiyang magbalik";
     }
 }
