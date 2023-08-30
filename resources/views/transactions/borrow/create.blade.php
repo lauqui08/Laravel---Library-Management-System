@@ -14,7 +14,7 @@
 
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="select" name="select" required>
+                        <select class="form-select fw-bolder text-info" id="select" name="select" required>
                             <option value="" selected>Open this select menu</option>
                             <option value="id">ID Number</option>
                             <option value="first_name">First Name</option>
@@ -26,7 +26,7 @@
 
                 <div class="col-md-8">
                     <div class="form-floating mb-3">
-                        <input type="text" value="{{ Request::query('q') }}" class="form-control" id="q" name="q" placeholder="" required>
+                        <input type="text" class="form-control fw-bolder text-info" id="q" name="q" placeholder="" required>
                         <label for="q">QUERY</label>
                     </div>
                 </div>

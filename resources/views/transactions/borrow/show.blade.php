@@ -5,13 +5,13 @@
         {{ $member->id }}
 
         <div class="my-1 text-end">
-            <button type="button" class="btn btn-primary position-relative">
+            <a href="{{ route('borrow.edit',$member->id) }}" class="btn btn-primary position-relative">
             CHECK OUT BOOKS
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ count($borrowed_books) ? count($borrowed_books) : 0 }}
                     <span class="visually-hidden">unread messages</span>
                 </span>
-            </button>
+            </a>
         </div>
         <div class="row">
             <div class="col-md-6 shadow">

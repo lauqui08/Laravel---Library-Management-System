@@ -33,7 +33,10 @@ class BorrowController extends Controller
         ->join('category','book.category_id','=','category.id')
         ->select('loan.id','book.title','category.category_name')
         ->get();
+
+        
         // dd($borrowed_books);
+
 
         return view('transactions.borrow.show',['books'=>$books,'member'=>$member,'borrowed_books'=>$borrowed_books]);
     }
@@ -55,5 +58,15 @@ class BorrowController extends Controller
         Borrow::find($id)->delete();
         // dd($bb);
         return redirect(route('borrow.show',$request->member_id));
+    }
+
+    public function edit($id)
+    {
+        $transactions = Borrow::join('book','loan.book_id','=','book.id')
+        ->join('member','loan.member_id','=','member.id')
+        ->where(['member.id'=>$id,'returned_date'=>null])
+        ->get();
+
+        return view('transactions.borrow.edit',['transactions'=>$transactions]);
     }
 }
