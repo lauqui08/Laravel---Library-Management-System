@@ -60,7 +60,7 @@
                         <li><a class="dropdown-item" href="{{ route('members.create') }}">Add</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Return</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                     </div>
 
@@ -70,7 +70,7 @@
                         Transactions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Lists</a></li>
+                        <li><a class="dropdown-item" href="{{ route('transactions.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('borrow.create') }}">Borrow Book</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Return Book</a></li>

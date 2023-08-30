@@ -68,14 +68,14 @@
         <div class="row bg-info-subtle">
             <div class="row pt-3 pe-0 ps-3">
                 <div class="col-6 text-start text-secondary"><label>AUTHOR/S</label></div>
-                <div class="col-6 text-end mb-3"><a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#{{ $book->id }}">Add Author</a></div>
+                <div class="col-6 text-end mb-3"><a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#{{ $book->id }}addAuthor">Add Author</a></div>
                 @if(session('author-message'))<span class="text-{{ session('success') ? 'success':'warning' }}">{{ session('author-message') }}</span>@endif
             </div>
             @foreach($authors as $author)
                 <div class="col-md-3">
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         <strong>{{ $author->first_name }} {{ $author->last_name }}</strong>
-                        <a class="btn-close btn" data-bs-toggle="modal" data-bs-target="#{{$author->id}}"></a>
+                        <a class="btn-close btn" data-bs-toggle="modal" data-bs-target="#{{$author->id}}deleteAuthor"></a>
                     </div>
 
                 </div>
@@ -101,7 +101,7 @@
 
     <!-- Modal Delete Author-->
     @foreach($authors as $author)
-        <div class="modal fade" id="{{ $author->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="{{ $author->id }}deleteAuthor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -128,7 +128,7 @@
     @endforeach
 
     <!-- Modal Add Author -->
-        <div class="modal fade" id="{{ $book->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="{{ $book->id }}addAuthor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
         <form action="{{ route('books.author.store') }}" method="POST" class="for-control">
             <input type="hidden" name="book_id" value="{{ $book->id }}">

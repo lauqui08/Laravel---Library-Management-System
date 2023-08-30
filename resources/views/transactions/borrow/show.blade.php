@@ -2,7 +2,13 @@
 
 @section('content')
     <div class="container shadow p-3">
-        {{ $member->first_name }} {{ $member->last_name }}
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('transactions.index') }}">Transactions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ Str::upper($member->first_name.' '.$member->last_name) }}</li>
+    </ol>
+    </nav>
 
         <div class="my-1 text-end">
             <a href="{{ count($borrowed_books) ? route('borrow.edit',$member->id) : '#' }}" class="btn btn-primary position-relative" disabled>
@@ -14,7 +20,7 @@
             </a>
         </div>
         <div class="row">
-            <div class="col-md-6 shadow">
+            <div class="col-md-6 border">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-dark">
@@ -35,10 +41,12 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $books->onEachSide(1)->links("pagination::bootstrap-4") }}
+                <div class="">
+                    {{ $books->onEachSide(1)->links("pagination::bootstrap-5") }}
+                </div>
             </div>
-            <div class="col-md-6 shadow overflow-auto">
-                <h2>LISTS</h2>
+            <div class="col-md-6 border">
+                <h3>LISTS</h3>
                 <table class="table table-hover">
                     <tbody>
                         @foreach($borrowed_books as $borrowed_book)

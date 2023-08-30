@@ -3,8 +3,15 @@
 @section('content')
 
     <div class="container shadow p-3">
-        {{ $transactions }}
-        <h3>Check Out Confirmation</h3>
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('transactions.index') }}">Transactions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ Str::upper($member->first_name.' '.$member->last_name) }}</li>
+    </ol>
+    </nav>
+        
+        <h4>Check Out Confirmation</h4>
 
         <table class="table table-borderless">
             <thead>

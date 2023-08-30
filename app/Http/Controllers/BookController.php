@@ -46,7 +46,7 @@ class BookController extends Controller
         ]);
 
 
-        return redirect(route('books.show',$request->book_id))->with('message','Successfully saved new book');
+        return redirect(route('books.show',$request->book_id))->with('message','Successfully saved new book. You can now add Author/s for this book.');
     }
 
     public function show($id)

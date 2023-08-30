@@ -5,7 +5,9 @@ use App\Http\Controllers\BookAuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\TransactionController;
+use App\Models\ReturnBook;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,4 +70,8 @@ Route::get('/borrow/{id}/checkout-confirmation',[BorrowController::class,'edit']
 
 Route::put('/borow/{id}',[BorrowController::class,'update'])->name('borrow.update');
 Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
+
+//transaction return book
+
+Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
 

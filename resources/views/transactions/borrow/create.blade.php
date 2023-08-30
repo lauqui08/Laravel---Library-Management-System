@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="container shadow p-3">
-
+    <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('borrow.index') }}">Borrow</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add</li>
     </ol>
+    </nav>
             <form action="" class="form-control" method="GET">
             @csrf
             <div class="row">
