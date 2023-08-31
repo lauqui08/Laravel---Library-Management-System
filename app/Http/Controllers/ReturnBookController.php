@@ -65,10 +65,9 @@ class ReturnBookController extends Controller
                 $book = Book::find($request->book_id);
 
                 $message = "Successfully returned $book->title.";
-                return redirect(route('transactions.index'))->with(['message'=>$message,'success'=>true]);
+                return redirect(route('transactions.index'))->with(['message'=>$message,'success'=>true,'forPayment'=>false]);
         }else{
-                // return redirect(route('payments.show',$request->loan_id))->with('message','Borrowed book is not return on time. Need to pay penalty.');
-                return view('payments.show');
+                return redirect(route('transactions.index','loan_id='.$request->loan_id))->with(['message'=>'Borrowed book is not return on time. Need to pay penalty.','success'=>false,'forPayment'=>true]);
         }
     }
 }

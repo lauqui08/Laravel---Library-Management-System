@@ -22,6 +22,11 @@ class TransactionController extends Controller
         return view('transactions.index',['transactions'=>$transactions]);
     }
 
+    public function singlePayment($id)
+    {
+        return view('transactions.payments.single');
+    }
+
     public function create()
     {
         return view('transactions.create');

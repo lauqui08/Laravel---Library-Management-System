@@ -13,10 +13,10 @@
        
             <div class="d-flex justify-content-end">
 
-                 <div class="col-md-8 col-12">
+                 <div class="col-md-8 col-12 me-2">
                     @if(session('message'))
                         <div class="alert alert-{{ session('success') ? 'success':'warning' }} alert-dismissible fade show" role="alert">
-                            {{ session('message') }}
+                            {{ session('message') }} @if(session('forPayment')) <a href="{{ route('transactions.singlePayment',$_GET['loan_id'] ? $_GET['loan_id'] : '')}}" class="btn btn-primary"> Procees Payment</a> @endif
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif

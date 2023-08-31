@@ -58,7 +58,9 @@ Route::put('/members/{id}',[MemberController::class,'update'])->name('members.up
 Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
 Route::get('/transactions/create',[TransactionController::class,'create'])->name('transactions.create');
 Route::post('/transactions',[TransactionController::class,'store'])->name('transactions.store');
-Route::get('/transactions/{id}',[TransactionController::class,'show'])->name('transactions.show');
+
+Route::get('/transactions/{id}',[TransactionController::class,'singlePayment'])->name('transactions.singlePayment');
+
 Route::get('/transactions/{id}/edit',[TransactionController::class,'edit'])->name('transactions.edit');
 Route::put('/transactions/{id}',[TransactionController::class,'update'])->name('transactions.update');
 
@@ -75,9 +77,4 @@ Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.
 //transaction return book
 Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
 Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
-
-//payments
-Route::get('/payments/{$id}',[PaymentsController::class,'show'])->name('payments.show');
-Route::get('/payments',[PaymentsController::class,'index'])->name('payments.index');
-
 
