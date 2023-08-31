@@ -41,12 +41,11 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('books.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('books.create') }}">Add</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="#">Add Author</a>
+                            <a class="dropdown-item" href="#">Author Lists</a>
                         </li>
-                        <li><a class="dropdown-item" href="#">Add Category</a></li>
+                        <li><a class="dropdown-item" href="#">Category Lists</a></li>
                     </ul>
                     </div>
 
@@ -58,9 +57,6 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('members.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('members.create') }}">Add</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                     </div>
 
@@ -72,8 +68,9 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('transactions.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('borrow.create') }}">Borrow Book</a></li>
-                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Return Book</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Payments</a></li>
                     </ul>
                     </div>
 

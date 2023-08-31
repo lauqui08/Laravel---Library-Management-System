@@ -16,6 +16,7 @@ class Borrow extends Model
         'book_id',
         'member_id',
         'loan_date',
+        'returned_date',
     ];
 
     public $timestamps = false;

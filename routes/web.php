@@ -74,4 +74,5 @@ Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.
 //transaction return book
 
 Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
+Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
 
