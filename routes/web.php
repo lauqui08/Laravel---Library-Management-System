@@ -5,6 +5,7 @@ use App\Http\Controllers\BookAuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\TransactionController;
 use App\Models\ReturnBook;
@@ -72,7 +73,11 @@ Route::put('/borow/{id}',[BorrowController::class,'update'])->name('borrow.updat
 Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
 
 //transaction return book
-
 Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
 Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
+
+//payments
+Route::get('/payments/{$id}',[PaymentsController::class,'show'])->name('payments.show');
+Route::get('/payments',[PaymentsController::class,'index'])->name('payments.index');
+
 

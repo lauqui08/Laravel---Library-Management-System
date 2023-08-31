@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\Fine;
 use App\Models\Member;
@@ -61,9 +62,13 @@ class ReturnBookController extends Controller
         ]);
 
         if($request->penalty == 0){
-                return "wala kang babayaran";
+                $book = Book::find($request->book_id);
+
+                $message = "Successfully returned $book->title.";
+                return redirect(route('transactions.index'))->with(['message'=>$message,'success'=>true]);
         }else{
-                return "may babayaran kapa";
+                // return redirect(route('payments.show',$request->loan_id))->with('message','Borrowed book is not return on time. Need to pay penalty.');
+                return view('payments.show');
         }
     }
 }
