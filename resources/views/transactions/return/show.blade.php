@@ -26,7 +26,7 @@
                         <td>{{ $transaction->isbn }}</td>
                         <td>{{ $transaction->title }}</td>
                         <td>{{ $transaction->loan_date }}</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#staticBackdrop">Process</a></td>
+                        <td><a data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#staticBackdrop">Process</a></td>
                     </tr>
 
             </tbody>

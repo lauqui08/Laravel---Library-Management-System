@@ -47,6 +47,12 @@
             </div>
             <div class="col-md-6 border">
                 <h3>LISTS</h3>
+                @if(session('message'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <table class="table table-hover">
                     <tbody>
                         @foreach($borrowed_books as $borrowed_book)

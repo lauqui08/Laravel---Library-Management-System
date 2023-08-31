@@ -43,14 +43,30 @@ class BorrowController extends Controller
 
     public function store(Request $request)
     {
-        Borrow::create([
-            'id'=>$request->loan_id,
-            'book_id'=>$request->book_id,
-            'member_id'=>$request->member_id,
-            'loan_date'=>$request->loan_date,
-        ]);
 
-        return redirect(route('borrow.show',$request->member_id));
+        $check_request = Borrow::where(['book_id'=>$request->book_id,'member_id'=>$request->member_id])->get();
+
+        if(count($check_request) > 0){
+            $check_onhand = $check_request -> where('loan_date',!null);
+            // dd(count($check_onhand));
+            if(count($check_onhand) > 0){
+                return redirect(route('borrow.show',$request->member_id))->with('message','Book with the same title is not yet returned. Must be returned first.');
+            }else{
+                return redirect(route('borrow.show',$request->member_id))->with('message','Book is already on the list.');
+            }
+        }else{
+
+            Borrow::create([
+                'id'=>$request->loan_id,
+                'book_id'=>$request->book_id,
+                'member_id'=>$request->member_id,
+                'loan_date'=>$request->loan_date,
+            ]);
+    
+            return redirect(route('borrow.show',$request->member_id));
+        }
+
+        
     }
 
     public function destroy(Request $request,$id='')
