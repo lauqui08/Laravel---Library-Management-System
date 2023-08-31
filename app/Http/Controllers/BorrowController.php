@@ -46,25 +46,30 @@ class BorrowController extends Controller
 
         $check_request = Borrow::where(['book_id'=>$request->book_id,'member_id'=>$request->member_id])->get();
 
-        if(count($check_request) > 0){
-            $check_onhand = $check_request -> where('loan_date',!null);
-            // dd(count($check_onhand));
-            if(count($check_onhand) > 0){
-                return redirect(route('borrow.show',$request->member_id))->with('message','Book with the same title is not yet returned. Must be returned first.');
-            }else{
-                return redirect(route('borrow.show',$request->member_id))->with('message','Book is already on the list.');
-            }
-        }else{
+        $check_if_on_the_list = $check_request->whereNull('loan_date')->whereNull('returned_date');
+        $check_if_not_returned =  $check_request->whereNotNull('loan_date')->whereNull('returned_date');
 
+        
+
+        if(count($check_if_not_returned) > 0){
+
+            return redirect(route('borrow.show',$request->member_id))->with('message','Book with the same title is not yet returned. Must be returned first.');
+
+        }else if(count($check_if_on_the_list) > 0){
+
+            return redirect(route('borrow.show',$request->member_id))->with('message','Book is already on the list.');
+           
+        }else{
+            // echo "meron na yan";
             Borrow::create([
                 'id'=>$request->loan_id,
                 'book_id'=>$request->book_id,
                 'member_id'=>$request->member_id,
                 'loan_date'=>$request->loan_date,
             ]);
-    
             return redirect(route('borrow.show',$request->member_id));
         }
+        
 
         
     }
