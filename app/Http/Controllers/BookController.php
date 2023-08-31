@@ -15,13 +15,20 @@ class BookController extends Controller
 {
     //
 
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::join('category','book.category_id','=','category.id')
-        ->select('book.*','category.category_name')->paginate('15');
-        // dd($books);
+    
 
-        return view('books.index',['books'=>$books]);
+            // dd($request->query('searchBook'));
+            $books = Book::join('category','book.category_id','=','category.id')
+            ->select('book.*','category.category_name')
+            ->where('book.title','LIKE','%'. $request->query('searchBook').'%')
+            ->orWhere('book.isbn','LIKE','%'. $request->query('searchBook').'%')
+            ->paginate('10');
+
+            return view('books.index',['books'=>$books]);
+
+
     }
 
 

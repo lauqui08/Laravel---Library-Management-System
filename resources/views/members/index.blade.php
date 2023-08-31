@@ -6,6 +6,21 @@
         <li class="breadcrumb-item"><a href="{{ route('members.index') }}">Members</a></li>
         <li class="breadcrumb-item active" aria-current="page">Lists</li>
     </ol>
+
+    <div class="d-flex justify-content-end">
+                <div class="col-md-4 col-12">
+                <form action="{{ route('members.index') }}" method="GET">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bolder text-info" name="searchBook" id="searchBook" placeholder="Search book">
+                        <label for="searchBook">
+                            SEARCH BOX
+                        </label>
+                    </div>
+                 </form>
+                </div>
+            </div>
+
         <table class="table table-hover">
             <thead>
                 <tr class="table-dark">
@@ -29,6 +44,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $members->onEachSide(2)->links('pagination::bootstrap-5')}}
+        {{ $members->appends($_GET)->onEachSide(2)->links('pagination::bootstrap-5')}}
     </div>
 @endsection

@@ -12,7 +12,7 @@
 
     <table class="table">
         <thead>
-            <tr>
+            <tr  class="table-dark">
                 <th>Transaction#</th>
                 <th>ISBN</th>
                 <th>Book Title</th>
@@ -26,7 +26,7 @@
                         <td>{{ $transaction->isbn }}</td>
                         <td>{{ $transaction->title }}</td>
                         <td>{{ $transaction->loan_date }}</td>
-                        <td><a data-bs-toggle="modal" class="btn btn-outline-primary" data-bs-target="#staticBackdrop">Process</a></td>
+                        <td><a data-bs-toggle="modal" class="btn btn-outline-primary btn-sm" data-bs-target="#staticBackdrop">Process</a></td>
                     </tr>
 
             </tbody>
@@ -51,7 +51,7 @@
       <div class="modal-body">
         <table class="table">
           <thead>
-            <tr>
+            <tr class="table-dark">
               <th>Borrowed Date</th>
               <th>Days Borrowed</th>
               <th>Returned Date</th>

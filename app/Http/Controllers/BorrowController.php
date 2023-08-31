@@ -24,9 +24,14 @@ class BorrowController extends Controller
        
     }
 
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        $books = Book::join('category','book.category_id','=','category.id')->select('book.*','category.category_name')->paginate('10');
+        $books = Book::join('category','book.category_id','=','category.id')
+        ->where('title','LIKE','%'. $request->query('searchBook').'%')
+        ->orWhere('isbn','LIKE','%'. $request->query('searchBook').'%')
+        ->select('book.*','category.category_name')
+        ->paginate('10');
+
         $member = Member::findOrfail($id);
         $borrowed_books = Borrow::where(['member_id'=>$member->id, 'loan_date'=>null])
         ->join('book','loan.book_id','=','book.id')

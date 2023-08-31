@@ -15,7 +15,7 @@
 
         <table class="table table-borderless">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>ISBN</th>
                     <th>Title</th>
                     <th>Borrowed Date</th>

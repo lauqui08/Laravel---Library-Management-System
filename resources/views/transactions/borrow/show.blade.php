@@ -19,7 +19,21 @@
                 </span>
             </a>
         </div>
+
         <div class="row">
+        <div class="d-flex justify-content-start">
+                <div class="col-md-6 col-12">
+                <form action="{{ route('borrow.show',$member->id) }}" method="GET">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bolder text-info" name="searchBook" id="searchBook" placeholder="Search book">
+                        <label for="searchBook">
+                            SEARCH BOX
+                        </label>
+                    </div>
+                 </form>
+                </div>
+            </div>
             <div class="col-md-6 border">
                 <table class="table table-hover">
                     <thead>
@@ -42,11 +56,11 @@
                     </tbody>
                 </table>
                 <div class="">
-                    {{ $books->onEachSide(1)->links("pagination::bootstrap-5") }}
+                    {{ $books->appends($_GET)->onEachSide(1)->links("pagination::bootstrap-5") }}
                 </div>
             </div>
             <div class="col-md-6 border">
-                <h3>LISTS</h3>
+                <h4 class="p-2">LISTS</h4>
                 @if(session('message'))
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     {{ session('message') }}

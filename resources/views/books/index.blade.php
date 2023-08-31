@@ -10,6 +10,20 @@
         <li class="breadcrumb-item active" aria-current="page">Lists</li>
     </ol>
     </nav>
+           
+            <div class="d-flex justify-content-end">
+                <div class="col-md-4 col-12">
+                <form action="{{ route('books.index') }}" method="GET">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bolder text-info" name="searchBook" id="searchBook" placeholder="Search book">
+                        <label for="searchBook">
+                            SEARCH BOX
+                        </label>
+                    </div>
+                 </form>
+                </div>
+            </div>
 
         <table class="table table-hover">
             <thead>
@@ -31,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-    {{ $books->onEachSide(2)->links("pagination::bootstrap-5") }}
+    {{ $books->appends($_GET)->onEachSide(2)->links("pagination::bootstrap-5") }}
     </div>
 
 @endsection

@@ -10,12 +10,30 @@
         </ol>
         </nav>
 
-        @if(session('message'))
-            <div class="alert alert-{{ session('success') ? 'success':'warning' }} alert-dismissible fade show" role="alert">
-                {{ session('message') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       
+            <div class="d-flex justify-content-end">
+
+                 <div class="col-md-8 col-12">
+                    @if(session('message'))
+                        <div class="alert alert-{{ session('success') ? 'success':'warning' }} alert-dismissible fade show" role="alert">
+                            {{ session('message') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-4 col-12">
+                <form action="{{ route('transactions.index') }}" method="GET">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bolder text-info" name="searchBook" id="searchBook" placeholder="Search book">
+                        <label for="searchBook">
+                            SEARCH BOX
+                        </label>
+                    </div>
+                 </form>
+                </div>
+                
             </div>
-        @endif
 
         <table class="table table-hover">
             <thead>
@@ -43,15 +61,15 @@
                             @if($transaction->loan_date === null && $transaction->returned_date === null)
                                 <a href="">Cancel</a>
                             @elseif($transaction->loan_date != null && $transaction->returned_date === null)
-                                <a href="{{ route('return.show.single',[$transaction->member_id,$transaction->id]) }}">Return</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{{ route('return.show.single',[$transaction->member_id,$transaction->id]) }}">Return</a>
                             @else
-                                <a href="">View</a>
+                                <a class="btn btn-outline-info btn-sm" href="#">View</a>
                             @endif
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $transactions->onEachSide(2)->links("pagination::bootstrap-5") }}
+        {{ $transactions->appends($_GET)->onEachSide(2)->links("pagination::bootstrap-5") }}
     </div>
 @endsection

@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 class MemberController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::orderBy('id','DESC')->paginate('15');
+        $members = Member::where('first_name','LIKE','%'. $request->query('searchBook').'%')
+        ->orWhere('last_name','LIKE','%'. $request->query('searchBook').'%')
+        ->orWhere('id','LIKE','%'. $request->query('searchBook').'%')
+        ->orderBy('id','DESC')
+        ->paginate('15');
 
         return view('members.index',['members'=>$members]);
     }
