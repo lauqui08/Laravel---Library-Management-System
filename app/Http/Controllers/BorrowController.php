@@ -76,7 +76,7 @@ class BorrowController extends Controller
             Borrow::where(['member_id'=>$request->member_id,'loan_date'=>null])
             ->delete();
 
-            return 'transaction deleted';
+            return redirect(route('transactions.index'))->with(['message'=>'Cancelled transaction/s','success'=>false]);
         }else{
         Borrow::find($id)->delete();
         // dd($bb);
@@ -104,6 +104,6 @@ class BorrowController extends Controller
             'loan_date'=>date('Y/m/d'),
         ]);
 
-        return "Wag mahihiyang magbalik";
+        return redirect(route('transactions.index'))->with(['message'=>'Successfully added new transaction/s','success'=>true]);
     }
 }

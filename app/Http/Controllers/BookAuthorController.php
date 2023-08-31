@@ -31,24 +31,27 @@ class BookAuthorController extends Controller
     public function store(Request $request)
     {
         // dd($request->author_id);
-       
+        $check_author = BookAuthor::where(['book_id'=>$request->book_id,'author_id'=>$request->author_id])->get();
 
 
 
         if(isset($request->new_book)){
 
-            BookAuthor::create([
-                'book_id'=>$request->book_id,
-                'author_id'=>$request->author_id,
-            ]);
+            if(count($check_author) == 1){
+                return redirect(route('books.show',$request->book_id))->with(['author-message'=>'Author is already in list.','success'=>false]);
+            }else{
+                BookAuthor::create([
+                    'book_id'=>$request->book_id,
+                    'author_id'=>$request->author_id,
+                ]);
+                return redirect(route('books.show',$request->book_id))->with(['author-message'=>'Successfully added author.','success'=>true]);
+            }
 
-            return redirect(route('books.show',$request->book_id))->with('author-message','Successfully added author.');
         }else{
 
-            $check_author = BookAuthor::where(['book_id'=>$request->book_id,'author_id'=>$request->author_id])->get();
             // dd(count($check_author)); 
 
-            if(count($check_author) === 1){
+            if(count($check_author) == 1){
                 return redirect(route('books.edit',$request->book_id))->with(['author-message'=>'Author is already in list.','success'=>false]);
             }else{
                 BookAuthor::create([

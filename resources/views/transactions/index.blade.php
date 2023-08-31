@@ -10,6 +10,13 @@
         </ol>
         </nav>
 
+        @if(session('message'))
+            <div class="alert alert-{{ session('success') ? 'success':'warning' }} alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <table class="table table-hover">
             <thead>
                 <tr class="table-dark">

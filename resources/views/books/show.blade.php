@@ -78,8 +78,13 @@
                     @endif
 
                 </div>
-                @if(session('author-message'))<span class="text-success">{{ session('author-message') }}</span>@endif
-            </div>
+                
+                @if(session('author-message'))
+                    <span class="text-{{ session('success') ? 'success':'warning' }}">
+                        {{ session('author-message') }}
+                    </span>
+                @endif
+
             @foreach($authors as $author)
                 <div class="col-md-3">
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
