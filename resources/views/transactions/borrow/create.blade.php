@@ -40,6 +40,7 @@
 
             @if(count($members) > 0)
             <p>Search by: {{ Request::query('select') ? Request::query('select') : '' }}, Searching... {{ Request::query('q') ? Request::query('q') : '' }}</p>
+            <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr class="table-dark">
@@ -58,15 +59,19 @@
                         <td>{{ $member->email }}</td>
                         <td>{{ $member->contact }}</td>
                         <td class="text-center">
+                            @if($member->active_status_id == 1)
                             <form action="{{ route('borrow.show',$member->id) }}" method="GET">
                                 <button type="submit" class="btn btn-outline-primary btn-sm">Proceed Transaction</button>
                             </form>
+                            @else
+                            <a class="btn btn-outline-info btn-sm" href="{{ route('members.show',$member->id) }}">Need to Activate</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            
+            </div>
             @endif
 
 

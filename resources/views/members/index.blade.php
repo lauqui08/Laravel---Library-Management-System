@@ -20,7 +20,7 @@
                  </form>
                 </div>
             </div>
-
+    <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr class="table-dark">
@@ -37,13 +37,18 @@
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->contact }}</td>
                     <td class="text-end">
+                    @if($member->active_status_id == 1)
                         <a class="btn btn-outline-primary btn-sm" href="{{ route('borrow.show',$member->id) }}">Borrow</a>
+                    @else
+                        <a class="btn btn-outline-info btn-sm" href="{{ route('members.show',$member->id) }}">Need to Activate</a>
+                    @endif
                         <a class="btn btn-outline-primary btn-sm" href="{{ route('members.show',$member->id) }}">View</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
         {{ $members->appends($_GET)->onEachSide(2)->links('pagination::bootstrap-5')}}
     </div>
 @endsection

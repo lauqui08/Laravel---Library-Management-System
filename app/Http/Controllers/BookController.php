@@ -24,6 +24,7 @@ class BookController extends Controller
             ->select('book.*','category.category_name')
             ->where('book.title','LIKE','%'. $request->query('searchBook').'%')
             ->orWhere('book.isbn','LIKE','%'. $request->query('searchBook').'%')
+            ->orderBy('title')
             ->paginate('10');
 
             return view('books.index',['books'=>$books]);

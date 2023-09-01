@@ -14,7 +14,7 @@ class MemberController extends Controller
         $members = Member::where('first_name','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('last_name','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('id','LIKE','%'. $request->query('searchBook').'%')
-        ->orderBy('id','DESC')
+        ->orderBy('first_name')
         ->paginate('15');
 
         return view('members.index',['members'=>$members]);
