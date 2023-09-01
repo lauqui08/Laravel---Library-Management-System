@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
+use App\Models\Fine;
+use App\Models\FinePayment;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -24,7 +27,31 @@ class TransactionController extends Controller
 
     public function singlePayment($id)
     {
-        return view('transactions.payments.single');
+
+        $payment = Loan::join('fine','loan.id','=','fine.loan_id')
+        ->join('book','loan.book_id','=','book.id')
+        ->join('member','loan.member_id','=','member.id')
+        ->where('loan.id',$id)
+        ->select('loan.*','book.title','book.isbn','member.first_name','member.last_name','fine.fine_amount')
+        ->first();
+
+        $payment_details = Fine::join('loan','fine.loan_id','=','loan.id')
+        ->join('member','loan.member_id','=','member.id')
+        ->where('loan_id','=',$payment->id)
+        ->first();
+
+        $payment_status = FinePayment::join('fine','fine_payment.loan_id','=','fine.loan_id')
+        ->where('fine.loan_id',$id)
+        ->first();
+
+        // dd(count($payment_status));
+        // dd( $payment);
+        // dd($payment_status);
+        return view('transactions.payments.single',[
+            'payment'=>$payment,
+            'payment_details'=>$payment_details,
+            'payment_status'=>$payment_status
+        ]);
     }
 
     public function create()

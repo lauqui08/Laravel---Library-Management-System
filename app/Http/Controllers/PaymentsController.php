@@ -7,15 +7,9 @@ use Illuminate\Http\Request;
 class PaymentsController extends Controller
 {
     //
-
-    public function index()
+    public function singlePaymentTransaction(Request $request)
     {
-        return 'index';
+        return $request->cash_received;
     }
-    public function show($id)
-    {
-        return $id;
-    }
-
 
 }

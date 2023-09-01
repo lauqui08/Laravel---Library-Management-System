@@ -80,5 +80,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
         Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
 
+        //payments transactions
+        Route::post('/singelPaymentTransaction',[PaymentsController::class,'singlePaymentTransaction'])->name('singelPaymentTransaction');
+
 });
 
