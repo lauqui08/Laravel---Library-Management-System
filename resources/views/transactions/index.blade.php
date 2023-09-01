@@ -63,7 +63,7 @@
                             @elseif($transaction->loan_date != null && $transaction->returned_date === null)
                                 <a class="btn btn-outline-primary btn-sm" href="{{ route('return.show.single',[$transaction->member_id,$transaction->id]) }}">Return</a>
                             @else
-                                <a class="btn btn-outline-info btn-sm" href="#">View</a>
+                                <a class="btn btn-outline-info btn-sm" href="{{ route('transactions.singlePayment',$transaction->id) }}">View</a>
                             @endif
                         </td>
                     </tr>

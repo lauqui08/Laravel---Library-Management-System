@@ -6,13 +6,11 @@
 
     @if(session('message'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
-            {{ $session('message') }}
+            {{ session('message') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-
-        {{ $payment_status }}
-
+    <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
@@ -35,9 +33,48 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    @if($payment_status)
+        <div class="row" id="printableArea">
+            <p class="ms-5 mt-5 fw-bold">Invoice# {{ $payment_status->invoice_number }}</p>
+            <p class="ms-5">
+                <span class="d-block fw-bold">Issued To:</span>
+                 {{ $payment->first_name.' '.$payment->last_name }}
+                 <span class="d-block fw-bold">Issued Date:</span>
+                 {{ $payment_status->payment_date }}
+            </p>
+            <p class="text-center">-------------- Borrowed Details --------------</p>
+            <p class="ms-5 mt-1">
+                <span class="d-block fw-bold">Book details</span>
+                {{ $payment->isbn.' '.$payment->title }}
+                <span class="d-block fw-bold">Borrowed Dates</span>
+                {{ $payment->loan_date.' - '.$payment->returned_date }}
+                <span class="d-block fw-bold">Expected Returned Date</span>
+                         @php
+                            $date = date_create($payment->loan_date);
+                            date_add($date,date_interval_create_from_date_string("3 days"));
+                            echo date_format($date,"Y/m/d");
+                        @endphp
+                <span class="d-block fw-bold">Number of days penalized</span>
+                @php
+                         $datetime1 = strtotime($payment->loan_date);
+                         $datetime2 = strtotime($payment->returned_date);
+
+                        $secs = $datetime2 - $datetime1;// == <seconds between the two times>
+                         echo $days = $secs / 86400;
+                @endphp
+            </p>
+            <p class="fst-italic ms-5 pe-5">
+                Note: Formula in getting the amount of penalty is ((Number of days Penalized) multiply by $100). You only have 3 days for free to borrow a book. Beyond that three days will be penalized $100 per day.
+            </p>
+            <p class="text-end pe-5"><span class="fw-bold">Amount Paid: </span>${{ $payment_status->payment_amount  }}</p>
+        </div>
+    @endif
+
+
         <div class="text-end">
-            @if($payment_status)
-                <a href="" class="btn btn-outline-secondary">Print</a>
+            @if($payment_status || $payment->fine_amount == 0 )
+                <a href="javascript:void(0);" onclick="printPageArea('printableArea')" class="btn btn-outline-secondary">Print</a>
             @else
                 <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary">Payment</a>
             @endif
@@ -52,8 +89,15 @@
 
     <form action="{{ route('singelPaymentTransaction') }}" method="POST">
         @csrf
+        @php
+            $invoice_number = rand(1,2147483647);
+        @endphp
+        <input type="hidden" name="amount_to_pay" value="{{ $payment->fine_amount }}">
+        <input type="hidden" name="invoice_number" value="{{ $invoice_number }}">
+        <input type="hidden" name="member_id" value="{{ $payment_details->member_id }}">
+        <input type="hidden" name="loan_id" value="{{ $payment_details->loan_id }}">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Invoice No. {{ rand(1,2147483647) }}</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Invoice No. {{ $invoice_number }}</h1>
       </div>
       <div class="modal-body">
         <p>Amount to pay: ${{ $payment->fine_amount }}</p>
@@ -75,5 +119,14 @@
     </div>
   </div>
 </div>
+<script>
+    function printPageArea(areaID){
+    var printContent = document.getElementById(areaID).innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+}
+</script>
 
 @endsection()
