@@ -94,7 +94,7 @@
                 </div>
             @endforeach
         </div>
-
+        </div>
         <div class="row mt-3">
             <div class="col">
                 <div class="form-floating mb-3">

@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function(){
         Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
 
         //transaction return book
+        Route::get('/return',[ReturnBookController::class,'index'])->name('return.index');
         Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
         Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
 

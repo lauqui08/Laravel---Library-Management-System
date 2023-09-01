@@ -80,7 +80,7 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('transactions.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('borrow.create') }}">Borrow Book</a></li>
-                        <li><a class="dropdown-item" href="#">Return Book</a></li>
+                        <li><a class="dropdown-item" href="{{ route('return.index') }}">Return Book</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Payments</a></li>
                     </ul>
@@ -130,6 +130,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+
     </div>
+
+    
+  
 </body>
 </html>

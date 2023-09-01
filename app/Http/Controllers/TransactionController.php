@@ -21,6 +21,7 @@ class TransactionController extends Controller
         ->orWhere('member.last_name','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('book.isbn','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('book.title','LIKE','%'. $request->query('searchBook').'%')
+        ->orderBy('loan.loan_date','DESC')
         ->paginate('10');
         return view('transactions.index',['transactions'=>$transactions]);
     }

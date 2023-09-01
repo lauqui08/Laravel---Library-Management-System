@@ -18,7 +18,7 @@
         @endif
 
 
-        <form action="{{ route('books.store') }}" method="POST" class="form-control  shadow">
+        <form action="{{ route('books.store') }}" method="POST" class="form-control shadow">
             @csrf
         <div class="row">
             <div class="col-md-4">

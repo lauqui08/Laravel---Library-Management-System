@@ -40,7 +40,7 @@
             @if($payment_status)
                 <a data-bs-toggle="modal" data-bs-target="#staticBackdropPrint" class="btn btn-outline-primary">Print Preview</a>
             @else
-                @if($payment->fine_amout == 0)
+                @if($payment->fine_amount == 0)
                     <p>No Payment needed: Book is returned on time!</p>
                 @else
                 <a data-bs-toggle="modal" data-bs-target="#staticBackdropPayment" class="btn btn-outline-primary">Payment</a>   
