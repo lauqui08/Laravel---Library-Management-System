@@ -59,7 +59,13 @@
                         <td>{{ $transaction->returned_date }}</td>
                         <td>
                             @if($transaction->loan_date === null && $transaction->returned_date === null)
-                                <a href="" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                            <form action="{{ route('borrow.destroy',$transaction->member_id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="member_id" value="{{$transaction->member_id}}">
+                                <input type="hidden" name="cancel-transaction">
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">Cancel</button>
+                            </form>
                             @elseif($transaction->loan_date != null && $transaction->returned_date === null)
                                 <a class="btn btn-outline-primary btn-sm" href="{{ route('return.show.single',[$transaction->member_id,$transaction->id]) }}">Return</a>
                             @else

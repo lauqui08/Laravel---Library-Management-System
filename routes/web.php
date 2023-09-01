@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookAuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\ReturnBookController;
@@ -31,9 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function(){
 
-        Route::get('/', function () {
-            return view('home');
-        });
+        Route::get('/',[HomeController::class,'index']);
 
         //books
         Route::get('/books',[BookController::class,'index'])->name('books.index')->middleware('auth');
