@@ -17,6 +17,7 @@ class TransactionController extends Controller
         ->join('member','loan.member_id','=','member.id')
         ->select('loan.*','member.first_name','member.last_name','book.isbn','book.title')
         ->where('loan.id','LIKE','%'. $request->query('searchBook').'%')
+        ->orWhere('member.id','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('member.first_name','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('member.last_name','LIKE','%'. $request->query('searchBook').'%')
         ->orWhere('book.isbn','LIKE','%'. $request->query('searchBook').'%')
@@ -54,6 +55,8 @@ class TransactionController extends Controller
             'payment_status'=>$payment_status
         ]);
     }
+
+   
 
     public function create()
     {

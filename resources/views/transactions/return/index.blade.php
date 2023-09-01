@@ -34,7 +34,7 @@
                     <td>{{ $borrowed_book->first_name.' '.$borrowed_book->last_name }}</td>
                     <td>{{ $borrowed_book->borrowed_books }}</td>
                     <td class="text-end">
-                        <a href="" class="btn btn-outline-info btn-sm">View</a>
+                        <a href="{{ route('payments.display.show',$borrowed_book->id) }}" class="btn btn-outline-info btn-sm">View</a>
                         <a href="" class="btn btn-outline-primary btn-sm">Return</a>
                     </td>
                 </tr>
@@ -44,5 +44,6 @@
         {{ $borrowed_books->appends($_GET)->onEachSide(2)->links("pagination::bootstrap-5") }}
     </div>
 </div>
+
 
 @endsection

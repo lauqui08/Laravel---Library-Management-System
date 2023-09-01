@@ -82,6 +82,8 @@ Route::middleware('auth')->group(function(){
 
         //payments transactions
         Route::post('/singelPaymentTransaction',[PaymentsController::class,'singlePaymentTransaction'])->name('singelPaymentTransaction');
+        Route::get('/payment/display/{id}',[PaymentsController::class,'show'])->name('payments.display.show');
+        Route::post('/multiplePaymentTransaction',[PaymentsController::class,'multiplePayment'])->name('multiplePayment');
 
 });
 
