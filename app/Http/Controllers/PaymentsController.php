@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fine;
 use App\Models\FinePayment;
 use App\Models\Loan;
 use App\Models\Member;
@@ -32,12 +33,19 @@ class PaymentsController extends Controller
     {
         $loans = Loan::where('member_id',$request->member_id)->get();
         // dd($loans);
-        // FinePayment::insert([
+        // Fine::insert([
         //     'book_id'=>$loan->book_id,
         //     'loan_id'=>$loan->id,
         //     'fine_date'=>$fine_date,
         //     'fine_amount'=> $penalty,
         // ]);
+        // FinePayment::insert([
+        //     'invoice_number'=>$request->invoice_number,
+        //     'loan_id'=>$loan->id,
+        //     'member_id'=>$loan->member_id,
+        // ]);
+
+            
         foreach($loans as $loan){
 
                                 $datetime1 = strtotime($loan->loan_date);
@@ -47,8 +55,22 @@ class PaymentsController extends Controller
                                 $days = $secs / 86400;
                                 $penalty = $days > 3 ? ($days - 3) * 100 : 0;
                                 $fine_date = date('Y/m/d',strtotime($loan->loan_date.'+3 days'));
+                                Fine::insert([
+                                    'book_id'=>$loan->book_id,
+                                    'loan_id'=>$loan->id,
+                                    'fine_date'=>$fine_date,
+                                    'fine_amount'=> $penalty,
+                                ]);
+                                FinePayment::insert([
+                                    'invoice_number'=>$request->invoice_number,
+                                    'loan_id'=>$loan->id,
+                                    'member_id'=>$loan->member_id,
+                                ]);
+                                Loan::where('id',$loan->id)->update([
+                                    'returned_date'=>date('Y/m/d'),
+                                ]);
         }
-        // return $request->member_id;
+        return redirect(route(''));
     }
 
     public function show($id)
