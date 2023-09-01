@@ -59,7 +59,7 @@
                         <td>{{ $transaction->returned_date }}</td>
                         <td>
                             @if($transaction->loan_date === null && $transaction->returned_date === null)
-                                <a href="">Cancel</a>
+                                <a href="" class="btn btn-outline-secondary btn-sm">Cancel</a>
                             @elseif($transaction->loan_date != null && $transaction->returned_date === null)
                                 <a class="btn btn-outline-primary btn-sm" href="{{ route('return.show.single',[$transaction->member_id,$transaction->id]) }}">Return</a>
                             @else

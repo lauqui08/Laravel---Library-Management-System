@@ -23,58 +23,62 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//books
-Route::get('/books',[BookController::class,'index'])->name('books.index');
-Route::get('/books/create',[BookController::class,'create'])->name('books.create');
-Route::post('/books',[BookController::class,'store'])->name('books.store');
-Route::get('/books/{id}',[BookController::class,'show'])->name('books.show');
-Route::get('/books/{id}/edit',[BookController::class,'edit'])->name('books.edit');
-Route::put('/books/{id}',[BookController::class,'update'])->name('books.update');
+Route::middleware('auth')->group(function(){
+
+        Route::get('/', function () {
+            return view('home');
+        });
+
+        //books
+        Route::get('/books',[BookController::class,'index'])->name('books.index')->middleware('auth');
+        Route::get('/books/create',[BookController::class,'create'])->name('books.create');
+        Route::post('/books',[BookController::class,'store'])->name('books.store');
+        Route::get('/books/{id}',[BookController::class,'show'])->name('books.show');
+        Route::get('/books/{id}/edit',[BookController::class,'edit'])->name('books.edit');
+        Route::put('/books/{id}',[BookController::class,'update'])->name('books.update');
 
 
-//book_author
-Route::get('/books/{id}/author',[BookAuthorController::class,'show'])->name('books.author.show');
-Route::post('/books/author',[BookAuthorController::class,'store'])->name('books.author.store');
-Route::delete('/authors',[BookAuthorController::class,'destroy'])->name('books.author.destroy');
+        //book_author
+        Route::get('/books/{id}/author',[BookAuthorController::class,'show'])->name('books.author.show');
+        Route::post('/books/author',[BookAuthorController::class,'store'])->name('books.author.store');
+        Route::delete('/authors',[BookAuthorController::class,'destroy'])->name('books.author.destroy');
 
 
-//members
-Route::get('/members',[MemberController::class,'index'])->name('members.index');
-Route::get('/members/create',[MemberController::class,'create'])->name('members.create');
-Route::post('/members',[MemberController::class,'store'])->name('members.store');
-Route::get('/members/{id}',[MemberController::class,'show'])->name('members.show');
-Route::get('/members/{id}/edit',[MemberController::class,'edit'])->name('members.edit');
-Route::put('/members/{id}',[MemberController::class,'update'])->name('members.update');
+        //members
+        Route::get('/members',[MemberController::class,'index'])->name('members.index');
+        Route::get('/members/create',[MemberController::class,'create'])->name('members.create');
+        Route::post('/members',[MemberController::class,'store'])->name('members.store');
+        Route::get('/members/{id}',[MemberController::class,'show'])->name('members.show');
+        Route::get('/members/{id}/edit',[MemberController::class,'edit'])->name('members.edit');
+        Route::put('/members/{id}',[MemberController::class,'update'])->name('members.update');
 
-//Transactions
-Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
-Route::get('/transactions/create',[TransactionController::class,'create'])->name('transactions.create');
-Route::post('/transactions',[TransactionController::class,'store'])->name('transactions.store');
+        //Transactions
+        Route::get('/transactions',[TransactionController::class,'index'])->name('transactions.index');
+        // Route::get('/transactions/create',[TransactionController::class,'create'])->name('transactions.create');
+        // Route::post('/transactions',[TransactionController::class,'store'])->name('transactions.store');
+        Route::get('/transactions/{id}',[TransactionController::class,'singlePayment'])->name('transactions.singlePayment');
+        // Route::get('/transactions/{id}/edit',[TransactionController::class,'edit'])->name('transactions.edit');
+        // Route::put('/transactions/{id}',[TransactionController::class,'update'])->name('transactions.update');
 
-Route::get('/transactions/{id}',[TransactionController::class,'singlePayment'])->name('transactions.singlePayment');
+        //Trasaction borrow
+        Route::get('/borrow',[BorrowController::class,'index'])->name('borrow.index');
+        Route::get('/borrow/create',[BorrowController::class,'create'])->name('borrow.create');
+        Route::post('/borrow',[BorrowController::class,'store'])->name('borrow.store');
+        Route::get('/borrow/{id}',[BorrowController::class,'show'])->name('borrow.show');
+        Route::get('/borrow/{id}/checkout-confirmation',[BorrowController::class,'edit'])->name('borrow.edit');
 
-Route::get('/transactions/{id}/edit',[TransactionController::class,'edit'])->name('transactions.edit');
-Route::put('/transactions/{id}',[TransactionController::class,'update'])->name('transactions.update');
+        Route::put('/borow/{id}',[BorrowController::class,'update'])->name('borrow.update');
+        Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
 
-//Trasaction borrow
-Route::get('/borrow',[BorrowController::class,'index'])->name('borrow.index');
-Route::get('/borrow/create',[BorrowController::class,'create'])->name('borrow.create');
-Route::post('/borrow',[BorrowController::class,'store'])->name('borrow.store');
-Route::get('/borrow/{id}',[BorrowController::class,'show'])->name('borrow.show');
-Route::get('/borrow/{id}/checkout-confirmation',[BorrowController::class,'edit'])->name('borrow.edit');
+        //transaction return book
+        Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
+        Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
 
-Route::put('/borow/{id}',[BorrowController::class,'update'])->name('borrow.update');
-Route::delete('/borrow/{id}',[BorrowController::class,'destroy'])->name('borrow.destroy');
-
-//transaction return book
-Route::get('/return/{member_id}/{loan_id}',[ReturnBookController::class,'show'])->name('return.show.single');
-Route::post('/return',[ReturnBookController::class,'store'])->name('return.store');
+});
 
