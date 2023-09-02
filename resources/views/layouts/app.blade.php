@@ -104,10 +104,10 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li>
-                        <a class="dropdown-item" href="{{ route('authors.index') }}">Lists</a>
+                        <a class="dropdown-item" href="{{ route('categories.index') }}">Lists</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('authors.index') }}">Add</a>
+                            <a class="dropdown-item" href="{{ route('categories.create') }}">Add</a>
                         </li>
                     </ul>
                     </div>

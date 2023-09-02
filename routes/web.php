@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookAuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PaymentsController;
@@ -48,13 +49,21 @@ Route::middleware('auth')->group(function(){
         Route::post('/books/author',[BookAuthorController::class,'store'])->name('books.author.store');
         Route::delete('/authors',[BookAuthorController::class,'destroy'])->name('books.author.destroy');
 
-        //author
+        //authors
         Route::get('/authors',[AuthorController::class,'index'])->name('authors.index');
         Route::get('/authors/create',[AuthorController::class,'create'])->name('authors.create');
         Route::post('/authors',[AuthorController::class,'store'])->name('authors.store');
         Route::get('/authors/{id}',[AuthorController::class,'show'])->name('authors.show');
         Route::get('/authors/{id}/edit',[AuthorController::class,'edit'])->name('authors.edit');
         Route::put('/authors/{id}',[AuthorController::class,'update'])->name('authors.update');
+
+        //categories
+        Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
+        Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
+        Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
+        Route::get('/categories/{id}',[CategoryController::class,'show'])->name('categories.show');
+        Route::get('/categories/{id}/edit',[CategoryController::class,'edit'])->name('categories.edit');
+        Route::put('/categories/{id}',[CategoryController::class,'update'])->name('categories.update');
 
 
         //members
