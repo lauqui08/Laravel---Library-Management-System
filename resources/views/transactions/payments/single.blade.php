@@ -38,7 +38,7 @@
 
         <div class="text-end">
             @if($payment_status)
-                <a data-bs-toggle="modal" data-bs-target="#staticBackdropPrint" class="btn btn-outline-primary">Print Preview</a>
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdropPrintMultiple" class="btn btn-outline-primary">Print Preview</a>
             @else
                 @if($payment->fine_amount == 0)
                     <p>No Payment needed: Book is returned on time!</p>
@@ -87,6 +87,9 @@
                 </div>
             </div>
             </div>
+
+
+
 
             <!-- Modal Print Preview-->
             <div class="modal fade" id="staticBackdropPrint" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

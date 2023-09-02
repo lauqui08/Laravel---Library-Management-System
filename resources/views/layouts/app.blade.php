@@ -30,6 +30,7 @@
 </head>
 <body>
     <div id="app">
+        
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-sm-top">
             <div class="container">
                 <a class="navbar-brand shadow p-1" href="{{ url('/') }}">
@@ -53,11 +54,6 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('books.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('books.create') }}">Add</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="#">Author Lists</a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">Category Lists</a></li>
                     </ul>
                     </div>
 
@@ -80,9 +76,39 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{ route('transactions.index') }}">Lists</a></li>
                         <li><a class="dropdown-item" href="{{ route('borrow.create') }}">Borrow Book</a></li>
-                        <li><a class="dropdown-item" href="{{ route('return.index') }}">Return Book</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Payments</a></li>
+                        <!-- <li><a class="dropdown-item" href="{{ route('return.index') }}">Return Book</a></li> -->
+                        <!-- <li><hr class="dropdown-divider"></li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Payments</a></li> -->
+                    </ul>
+                    </div>
+
+                    <!-- Authors menu -->
+                    <div class="dropdown">
+                    <button class="link link-secondary dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                        Authors
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                        <a class="dropdown-item" href="{{ route('authors.index') }}">Lists</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('authors.create') }}">Add</a>
+                        </li>
+                    </ul>
+                    </div>
+
+                    <!-- Authors menu -->
+                    <div class="dropdown">
+                    <button class="link link-secondary dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                        <a class="dropdown-item" href="{{ route('authors.index') }}">Lists</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('authors.index') }}">Add</a>
+                        </li>
                     </ul>
                     </div>
 

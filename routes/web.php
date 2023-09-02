@@ -48,6 +48,14 @@ Route::middleware('auth')->group(function(){
         Route::post('/books/author',[BookAuthorController::class,'store'])->name('books.author.store');
         Route::delete('/authors',[BookAuthorController::class,'destroy'])->name('books.author.destroy');
 
+        //author
+        Route::get('/authors',[AuthorController::class,'index'])->name('authors.index');
+        Route::get('/authors/create',[AuthorController::class,'create'])->name('authors.create');
+        Route::post('/authors',[AuthorController::class,'store'])->name('authors.store');
+        Route::get('/authors/{id}',[AuthorController::class,'show'])->name('authors.show');
+        Route::get('/authors/{id}/edit',[AuthorController::class,'edit'])->name('authors.edit');
+        Route::put('/authors/{id}',[AuthorController::class,'update'])->name('authors.update');
+
 
         //members
         Route::get('/members',[MemberController::class,'index'])->name('members.index');

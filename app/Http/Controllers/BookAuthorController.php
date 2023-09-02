@@ -16,7 +16,7 @@ class BookAuthorController extends Controller
         $book = Book::findOrfail($id);
         // dd($book->id);
         $book_author = BookAuthor::where('book_id',$book->id)->get();
-        $authors = Author::all();
+        $authors = Author::get();
 
         if(!$book_author){
             return view('books.show',$id);

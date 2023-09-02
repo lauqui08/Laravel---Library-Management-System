@@ -32,7 +32,7 @@ class PaymentsController extends Controller
     public function multiplePayment(Request $request)
     {
         $loans = Loan::where('member_id',$request->member_id)->get();
-        // dd($loans);
+        // dd($loans[1]->id);
         // Fine::insert([
         //     'book_id'=>$loan->book_id,
         //     'loan_id'=>$loan->id,
@@ -55,6 +55,11 @@ class PaymentsController extends Controller
                                 $days = $secs / 86400;
                                 $penalty = $days > 3 ? ($days - 3) * 100 : 0;
                                 $fine_date = date('Y/m/d',strtotime($loan->loan_date.'+3 days'));
+
+                                Loan::where('id',$loan->id)->update([
+                                    'returned_date'=>date('Y/m/d'),
+                                ]);
+
                                 Fine::insert([
                                     'book_id'=>$loan->book_id,
                                     'loan_id'=>$loan->id,
@@ -66,11 +71,9 @@ class PaymentsController extends Controller
                                     'loan_id'=>$loan->id,
                                     'member_id'=>$loan->member_id,
                                 ]);
-                                Loan::where('id',$loan->id)->update([
-                                    'returned_date'=>date('Y/m/d'),
-                                ]);
+                               
         }
-        return redirect(route(''));
+        return redirect(route('transactions.index'));
     }
 
     public function show($id)

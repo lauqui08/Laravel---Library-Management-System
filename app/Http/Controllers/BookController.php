@@ -36,7 +36,7 @@ class BookController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::get();
 
         return view('books.create',['categories'=>$categories]);
     }
@@ -60,7 +60,7 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrfail($id);
-        $all_authors = Author::all();
+        $all_authors = Author::get();
         $book_author = BookAuthor::where('book_id',$book->id)->get();
         // $category = Category::where('id',$book->category_id)->get();
         $category = Category::findOrFail($book->category_id);
@@ -93,8 +93,8 @@ class BookController extends Controller
         ->where('book.id',$id)
         ->select('book.*','category.category_name')->get();
 
-        $all_authors = Author::all();
-        $categories = Category::all();
+        $all_authors = Author::get();
+        $categories = Category::get();
         // dd($book->id);
         // $book_author = BookAuthor::where('book_id',$book->id)->get();
      
@@ -122,8 +122,8 @@ class BookController extends Controller
         ]);
 
             $book = Book::findOrfail($id);
-            $all_authors = Author::all();
-            $categories = Category::all();
+            $all_authors = Author::get();
+            $categories = Category::get();
 
             // dd($book->id);
             $book_author = BookAuthor::where('book_id',$book->id)->get();

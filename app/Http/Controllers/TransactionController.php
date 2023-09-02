@@ -45,7 +45,7 @@ class TransactionController extends Controller
         $payment_status = FinePayment::join('fine','fine_payment.loan_id','=','fine.loan_id')
         ->where('fine.loan_id',$id)
         ->first();
-
+        // dd($payment_status);
         // dd(count($payment_status));
         // dd( $payment);
         // dd($payment_status);
@@ -54,9 +54,9 @@ class TransactionController extends Controller
             'payment_details'=>$payment_details,
             'payment_status'=>$payment_status
         ]);
+        
     }
 
-   
 
     public function create()
     {

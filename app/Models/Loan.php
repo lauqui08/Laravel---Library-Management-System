@@ -10,4 +10,6 @@ class Loan extends Model
     use HasFactory;
 
     protected $table = 'loan';
+
+    public $timestamps = false;
 }
